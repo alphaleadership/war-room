@@ -1,0 +1,14 @@
+{
+  "name": "hexo-theme-conflict-map",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "terser": "^5.31.0"
+  },
+  "scripts": {
+    "build": "terser source/js/ConflictMarkers.js -o source/js/ConflictMarkers.min.js && terser source/js/NewsBanner.js -o source/js/NewsBanner.min.js && terser source/js/script.js -o source/js/script.min.js"
+  }
+}

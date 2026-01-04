@@ -1,0 +1,64 @@
+<article>
+  <h1><%- page.title %></h1>
+  <div id="map" style="height: 300px;" aria-label="Conflict Location"></div>
+  <p>Severity: <%- page.severity %></p>
+  <div class="post-content">
+    <%- page.content %>
+  </div>
+
+  <% const battles = get_battles(page.slug); %>
+  <% if (battles.length > 0) { %>
+    <h2>Battles</h2>
+    <ul>
+      <% battles.forEach(battle => { %>
+        <li>
+          <h3><a href="<%= battle.path %>"><%= battle.title %></a></h3>
+          <p><strong>Date:</strong> <%= battle.date %></p>
+          <p><%- battle.description %></p>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+</article>
+
+<script>
+  const themeConfig = <%- JSON.stringify(theme) %>;
+  const battles = <%- JSON.stringify(get_battles(page.slug)) %>;
+  document.addEventListener('DOMContentLoaded', function () {
+    const mapConfig = themeConfig.map || {};
+    const tileProvider = mapConfig.tile_provider || 'osm';
+    const mapboxToken = mapConfig.mapbox_token;
+    const esriToken = mapConfig.esri_token;
+
+    let tileUrl;
+    switch (tileProvider) {
+      case 'mapbox':
+        tileUrl = `https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`;
+        break;
+      case 'esri':
+        tileUrl = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}?token=${esriToken}`;
+        break;
+      default:
+        tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    }
+
+    var map = L.map('map').setView([<%- page.lat %>, <%- page.lon %>], 6);
+
+    L.tileLayer(tileUrl, {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).on('tileerror', function(error, tile) {
+      console.error('Tile loading error:', error);
+      // You could display a message to the user here
+    }).addTo(map);
+
+    L.marker([<%- page.lat %>, <%- page.lon %>]).addTo(map)
+      .bindPopup('<%- page.title %>')
+      .openPopup();
+
+    const battleMarkers = new ConflictMarkers(map);
+    battles.forEach(battle => {
+      battle.type = 'battle';
+      battleMarkers.addMarker(battle);
+    });
+  });
+</script>

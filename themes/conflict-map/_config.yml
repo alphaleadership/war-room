@@ -1,0 +1,18 @@
+# Map
+map:
+  # Default zoom level
+  zoom: 2
+  # Default center coordinates
+  center: [0, 0]
+  # Tile provider. Options: osm, mapbox, esri
+  tile_provider: 'osm'
+  # Mapbox access token (required if tile_provider is mapbox)
+  mapbox_token: ''
+  # Esri access token (required if tile_provider is esri)
+  esri_token: ''
+
+# News Banner
+news_banner:
+  enable: true
+  # Interval in milliseconds
+  interval: 3000

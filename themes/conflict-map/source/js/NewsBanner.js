@@ -1,0 +1,28 @@
+class NewsBanner {
+  constructor(containerId, newsItems, config) {
+    this.container = document.getElementById(containerId);
+    this.newsItems = newsItems;
+    this.config = config || {};
+
+    this.render();
+  }
+
+  render() {
+    this.container.innerHTML = '';
+    const container = document.createElement('div');
+    container.className = 'container';
+
+    const list = document.createElement('ul');
+    this.newsItems.forEach(item => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<a href="${item.path}">${item.title}</a>`;
+      list.appendChild(listItem);
+    });
+
+    // Duplicate the list for seamless scrolling
+    const list2 = list.cloneNode(true);
+    container.appendChild(list);
+    container.appendChild(list2);
+    this.container.appendChild(container);
+  }
+}

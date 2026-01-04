@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+_multiconfig.yml
+themes/conflict-map/node_modules/
+themes/conflict-map/source/js/*.min.js
+themes/conflict-map/source/_data/
