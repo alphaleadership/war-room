@@ -1,33 +1,73 @@
-footer {
-  background-color: #f8f8f8;
+@import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@400;700&family=Anonymous+Pro:wght@400;700&display=swap');
+
+/*
+  Polices Rétro Militaire:
+  - Stardos Stencil: Pour les titres.
+  - Anonymous Pro: Pour le corps du texte.
+*/
+
+/* Styles Généraux */
+body {
+    font-family: 'Anonymous Pro', monospace;
+    background-color: #F4F1DE; /* Couleur papier vieilli / kaki clair */
+    color: #3D402B; /* Texte olive foncé */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Stardos Stencil', cursive;
+    color: #556B2F; /* Vert olive */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Liens */
+a {
+    color: #8B4513; /* Marron sienne */
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #3D402B;
+    background-color: rgba(85, 107, 47, 0.1);
+}
+
+/* Contenu d'un article */
+.post-content {
   padding: 20px;
-  text-align: center;
-  border-top: 1px solid #e7e7e7;
+  line-height: 1.6;
+  background-color: rgba(255, 255, 255, 0.5); /* Superposition semi-transparente pour la lisibilité */
+  border: 1px solid #C3B091; /* Bordure kaki */
+  margin: 20px;
 }
 
-footer a {
-  color: #333;
-  text-decoration: none;
-}
-
+/* Carte */
 #map {
   width: 100%;
   height: 500px;
+  border-top: 5px solid #556B2F;
+  border-bottom: 5px solid #556B2F;
 }
 
+/* Bannière d'actualités */
 #news-banner {
   width: 100%;
-  background-color: #333;
-  color: white;
+  background-color: #3D402B; /* Fond olive foncé */
+  color: #F4F1DE; /* Texte couleur papier */
   overflow: hidden;
   position: relative;
   height: 40px;
+  border-top: 2px solid #556B2F;
+  border-bottom: 2px solid #556B2F;
 }
 
 #news-banner .container {
   display: flex;
   width: 200%;
-  animation: scroll 20s linear infinite;
+  animation: scroll 30s linear infinite; /* Ralentissement du défilement */
 }
 
 #news-banner ul {
@@ -39,13 +79,20 @@ footer a {
 }
 
 #news-banner li {
-  padding: 10px 20px;
+  padding: 10px 30px; /* Plus d'espacement */
   white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 #news-banner a {
-  color: white;
+  color: #F4F1DE; /* Texte couleur papier */
   text-decoration: none;
+  font-family: 'Stardos Stencil', cursive;
+}
+
+#news-banner a:hover {
+    color: #C3B091; /* Kaki au survol */
 }
 
 @keyframes scroll {
@@ -57,13 +104,37 @@ footer a {
   }
 }
 
-.post-content {
+/* Pied de page */
+footer {
+  background-color: #3D402B; /* Fond olive foncé */
   padding: 20px;
-  line-height: 1.6;
+  text-align: center;
+  border-top: 5px solid #556B2F; /* Bordure olive */
+  color: #F4F1DE; /* Texte couleur papier */
 }
+
+footer a {
+  color: #F4F1DE;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
 
 @media (max-width: 600px) {
   #map {
     height: 300px;
+  }
+  
+  body {
+    padding: 0;
+  }
+  
+  .post-content {
+    margin: 0;
+    border-left: none;
+    border-right: none;
   }
 }
