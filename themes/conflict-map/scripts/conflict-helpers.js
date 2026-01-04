@@ -1,8 +1,8 @@
 hexo.extend.helper.register('get_all_conflicts', function(){
   const conflicts = [];
   this.site.posts.forEach((post) => {
-    // Exclude posts that are battles
-    if (post.lat && post.lon && !post.path.startsWith('battles/')) {
+    // Exclude posts that are battles by checking their source folder
+    if (post.lat && post.lon && !post.source.includes('_posts/battles/')) {
       conflicts.push({
         lat: post.lat,
         lon: post.lon,
